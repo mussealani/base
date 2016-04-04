@@ -14,4 +14,82 @@ a {
   }
 }
 
+header {
+  nav {
+      border-bottom: 2px solid @gray-light;
+      border-radius: 0;
+
+    .navbar-brand {
+      font-size: 3rem;
+      font-weight: 900;
+      color: @body-bg;
+      background-color: @gray;
+      padding-right: 3rem;
+    }
+
+    a {
+      color: @gray-light;
+      font-weight: 500;
+
+    }
+  }
+
+  .navbar-toggle.collapsed {
+    background-color: @gray;
+    .icon-bar {
+      background-color: @body-bg;
+    }
+  }
+}
+
+
+
+.header {
+  position: relative;
+  background-color: #fff;
+  padding-top: 20px;
+  z-index: 99999;
+  transition: all 400ms;
+}
+
+.header.is-stuck {
+  position: fixed;
+  background-color: @gray-base;
+  padding: 0px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
+  a {
+    &.dropdown-toggle {
+
+      color: @body-bg;
+    }
+    &.go-back {
+      color: @body-bg;
+    }
+    &.navbar-brand {
+      background-color: @body-bg;
+      color: @gray-base;
+    }
+  }
+
+  .navbar-toggle.collapsed {
+    background-color: @body-bg;
+    .icon-bar {
+      background-color: @gray-base;
+    }
+  }
+}
+
+
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+  background-color: transparent;
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    background-color: #FFFF00;
+    color: #FFC0CB;
+}
+
 

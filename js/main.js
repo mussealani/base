@@ -3,7 +3,7 @@ var initApi = (function($) {
     // cache dom
     var $body = $('body'),
         $container = $('<div class="container"/>'),
-        $row = $('<div class="row"/>'),
+        $row = $('<div class="row main-content"/>'),
         $featuredImg = $('<figure/>'),
         $next = $('<div data-dir="next"><span class="glyphicon glyphicon-menu-right"></span>Next</div>'),
         $prev = $('<div data-dir="prev"><span class="glyphicon glyphicon-menu-left"></span>Prev</div>');
@@ -12,8 +12,8 @@ var initApi = (function($) {
     $container.prepend($row);
     $featuredImg.prependTo($body);
     $container.appendTo($body);
-    var arrows = $body.find($featuredImg);
-    $featuredImg.append($next);
+    // var arrows = $body.find($featuredImg);
+    // $featuredImg.append($next);
     /**
      * API Documentation:
      * http://v2.wp-api.org/reference/
@@ -24,9 +24,9 @@ var initApi = (function($) {
         // api available after saving permalinks settings
         apiBase = baseHref + 'wp-json/wp/v2/',
         // the add-on menu plugin has a different base
-        menuApiBase = baseHref + 'wp-json/wp-api-menus/v2/',
-        perPage = 5,
-        paged = 1;
+        //menuApiBase = baseHref + 'wp-json/wp-api-menus/v2/',
+        perPage = 1,// define how maney posts per page
+        paged = 1;// define first page
 
 
 
@@ -74,12 +74,12 @@ var initApi = (function($) {
         //     type: "tag",
         //     list: "tags"
         // },
-        {
-            route: menuApiBase + "menus",
-            className: "Menu",
-            type: "menu",
-            list: "menus"
-        }
+        // {
+        //     route: menuApiBase + "menus",
+        //     className: "Menu",
+        //     type: "menu",
+        //     list: "menus"
+        // }
     ];
 
 
@@ -122,8 +122,8 @@ var initApi = (function($) {
             if (countLoadedResources == resources.length) {
 
                 classify();
+                homePage();
             }
-
         });
     });
 
@@ -160,12 +160,19 @@ var initApi = (function($) {
         }
     };
 
+    // render home page
+    function homePage() {
+        var posts = memory.posts;
+        for(var i in posts) {
+            memory.posts[i].renderHome();
+        }
+    };
 
 
     return {
 
         apiBase: apiBase,
-        menuApiBase: menuApiBase,
+        //menuApiBase: menuApiBase,
         resources: resources
     }
 

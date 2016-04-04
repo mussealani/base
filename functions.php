@@ -22,6 +22,9 @@ function setupTheme() {
       'main_menu' => 'Main Menu',
     )
   );
+
+  // add theme support for featured image
+  add_theme_support( 'post-thumbnails' );
 }
 // run setup function
 setupTheme();

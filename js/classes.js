@@ -1,7 +1,12 @@
 var appBuilder = (function($) {
 
     // cache dom
-    var $section = $('<section/>');
+    var $section = $('<section/>'),
+        $body = $('body'),
+        $mainContent = $body.find('.main-content');
+
+        // append section
+        $mainContent.append($section);
 
 
 
@@ -25,7 +30,19 @@ var appBuilder = (function($) {
         render: function() {}
     });
 
-    classMemory.Post = classMemory.BaseWP.extend({});
+    classMemory.Post = classMemory.BaseWP.extend({
+        renderHome: function() {
+            var $article = $('<article class="col-md-6"/>'),
+                $featuredImg = $('<figure class="col-md-6"><img src="' + this.featured_img + '" /></figure>'),
+                $title = $('<h2>' + this.title.rendered + '</h2>');
+                // append post content and title to main article
+                $article.append([$title, this.content.rendered ]);
+
+
+            $section.append([$article, $featuredImg]);
+            console.log(this);
+        }
+    });
 
 
     classMemory.Page = classMemory.Post.extend({});
